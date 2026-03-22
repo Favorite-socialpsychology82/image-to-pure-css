@@ -1,6 +1,6 @@
 {
   "name": "@kongyo2/kongyo-css",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Convert images to pure CSS using linear gradients",
   "type": "module",
   "main": "./dist/index.js",
