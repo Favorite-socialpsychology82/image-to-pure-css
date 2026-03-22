@@ -58,9 +58,14 @@ const css = await convertImageToCSS("photo.png", {
   width: 100,
   tolerance: 5,
 });
+```
+
+```typescript
+import { readFileSync } from "node:fs";
+import { convertImageToCSS } from "@kongyo2/image-to-pure-css";
 
 // Bufferから変換
-const buffer = fs.readFileSync("photo.png");
+const buffer = readFileSync("photo.png");
 const css = await convertImageToCSS(buffer);
 ```
 
