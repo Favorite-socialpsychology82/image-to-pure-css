@@ -33,7 +33,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kongyo2/kongyo-css.git"
+    "url": "git+https://github.com/kongyo2/image-to-pure-css.git"
   },
   "license": "MIT",
   "publishConfig": {
